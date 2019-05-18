@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cczu.dao.GoodsDao">
+		<select id="getNewgoods" resultType="com.cczu.core.Goods">        
+		select * from goods  ORDER BY date desc
+		</select>
+		<select id="getHotgoods" resultType="com.cczu.core.Goods">        
+		select * from goods where isHot = 1
+		</select>
+		<select id="getCpgoods" resultType="com.cczu.core.Goods">        
+		select * from goods where iscompete = 1
+		</select>
+		<select id="getAllGoods" resultType="com.cczu.core.Goods">        
+		select * from goods limit 1,6
+		</select>
+		<select id="searchGoods" resultType="com.cczu.core.Goods">        
+		select * from goods where gname like CONCAT('%',#{name},'%')  limit 6 
+		</select>
+		<select id="searchCtg" resultType="com.cczu.core.Goods">        
+		select * from goods where cid = #{cid}  limit 6 
+		</select>
+		<select id="searchOneGood" parameterType="com.cczu.core.Goods" resultType="com.cczu.core.Goods">        
+		select * from goods where gid = #{gid} 
+		</select>
+
+</mapper>

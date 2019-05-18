@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cczu.dao.CartDao">
+
+		<insert id="addCart"  parameterType="com.cczu.core.Cart">        
+		insert into cart (gid,gname,newprice,path,id) values(#{gid},#{gname},#{newprice},#{path},#{id})
+		</insert>
+		<select id="checkGoods"  parameterType="com.cczu.core.Cart" resultType="com.cczu.core.Cart">        
+		select * from cart where id= #{id} and gid = #{gid}
+		</select>
+		<select id="takeGoods"  parameterType="com.cczu.core.Cart" resultType="com.cczu.core.Cart">        
+		select * from(
+		select a.gid, a.gname,a.newprice,a.id,
+		CASE 
+		WHEN b.issale='1' THEN  '已售出'
+		WHEN b.issale='0' THEN  '未售出' END as issale,
+    	a.path from cart as a 
+		LEFT JOIN  goods as b 
+		on a.gid = b.gid ) as c 
+		where c.id = #{id} 
+		</select>
+		<delete id="delDao" parameterType="com.cczu.core.Cart">
+		 delete from cart where id= #{id} and gid = #{gid}
+		</delete>
+
+</mapper>

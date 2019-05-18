@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cczu.dao.UserDao">
+		<select id="searchUser" resultType="com.cczu.core.User" parameterType="com.cczu.core.User">        
+		select * from userinfo where username = #{username}
+		</select>
+		<update id="submitUser" parameterType="com.cczu.core.User">        
+		update userinfo set email=#{email} , phone= #{phone} , address=#{address} where username = #{username} 
+		</update>
+
+</mapper>

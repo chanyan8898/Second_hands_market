@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cczu.dao.ManagerDao">
+		<select id="getAllUser" resultType="com.cczu.core.User">        
+		select * from userinfo where status = 0
+		</select>
+		
+		<update id="deleteUser" parameterType="com.cczu.core.User">        
+		update userinfo set status = 1 where username = #{username} 
+		</update>
+		
+		<select id="getAllCategory" resultType="com.cczu.core.Category">        
+		select * from category where status = 0
+		</select>
+		
+		<update id="deleteCtg" parameterType="com.cczu.core.Category">        
+		update category set status = 1 where cname = #{cname} 
+		</update>
+		
+		<select id="searchCtg" resultType="com.cczu.core.Category">        
+		select * from category where cname = #{cname}
+		</select>
+		
+		<update id="changeCtgStatus" parameterType="com.cczu.core.Category">        
+		update category set status = 0 where cname = #{cname} 
+		</update>
+		
+		<insert id="addCtg"  parameterType="com.cczu.core.Category">        
+		insert into category (cname,status) values(#{cname},0)
+		</insert>
+		
+		<update id="edtCtg" >        
+		update category set cname = #{newName} where cname = #{ctg.cname} 
+		</update>
+		
+		
+</mapper>
